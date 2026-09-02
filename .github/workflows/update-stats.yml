@@ -1,1 +1,38 @@
+name: Update README stats
 
+on:
+  schedule:
+    - cron: "0 0 * * *"   # jalan otomatis tiap hari jam 00:00 UTC
+  workflow_dispatch:        # bisa dipicu manual dari tab Actions
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Generate stats card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true&hide_border=true&theme=default&bg_color=00000000&text_color=1e2327&icon_color=9333EA&title_color=9333EA&hide_title=true
+          path: profile/stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Generate top languages card
+        uses: stats-organization/github-readme-stats-action@v2
+        with:
+          card: top-langs
+          options: username=${{ github.repository_owner }}&layout=compact&hide_border=true&theme=default&bg_color=00000000&text_color=1e2327&title_color=9333EA
+          path: profile/top-langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add profile/*.svg
+          git diff --quiet --cached || git commit -m "chore: update stats svg"
+          git push
