@@ -36,8 +36,8 @@
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=sabbilarasyad&show_icons=true&hide_title=true&hide_border=true&theme=default&bg_color=00000000&text_color=1e2327&icon_color=9333EA&title_color=9333EA" width="48%" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=sabbilarasyad&layout=compact&hide_border=true&theme=default&bg_color=00000000&text_color=1e2327&title_color=9333EA" width="40%" />
+<img src="./profile/stats.svg" width="48%" />
+<img src="./profile/top-langs.svg" width="40%" />
 
 </div>
 
